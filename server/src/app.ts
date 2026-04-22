@@ -3,7 +3,7 @@ import express, { type Express } from "express";
 import connectToDatabase from "./db/config/connection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
+import authRoute from "./routes/auth/route.js";
 const app: Express = express();
 const port = process.env.PORT;
 
@@ -16,6 +16,9 @@ app.use(
     credentials: true,
   }),
 );
+
+// routes
+app.use("/api/v1/auth", authRoute);
 
 async function server() {
   try {
